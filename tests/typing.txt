@@ -30,7 +30,7 @@ filelock==3.12.4
     # via virtualenv
 idna==3.4
     # via requests
-mypy==1.5.1
+mypy==1.6.0
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
