@@ -359,7 +359,7 @@ If you prefer to type your ansible-vault password rather than store it in a file
 
 and type in the vault password for ``my_user``.
 
-The :option:`--vault-id <ansible-playbook --vault-id>` flag allows different vault passwords for different users or different levels of access. The output includes the user name ``my_user`` from your ``ansible-vault`` command and uses the YAML syntax ``key: value``:
+The :option:`--vault-id <ansible-playbook --vault-id>` flag allows different vault passwords for different users or different levels of access. The output includes the username ``my_user`` from your ``ansible-vault`` command and uses the YAML syntax ``key: value``:
 
 .. code-block:: yaml
 
@@ -428,4 +428,4 @@ To see the original value, you can use the debug module. Please note if your YAM
 
 For more details on building inventory files, see :ref:`the introduction to inventory<intro_inventory>`; for more details on ansible-vault, see :ref:`the full Ansible Vault documentation<vault>`.
 
-Now that you understand the basics of commands, playbooks, and inventory, it's time to explore some more complex Ansible Network examples.
+Now that you understand the basics of commands, playbooks, and inventory, it is time to explore some more complex Ansible Network examples.

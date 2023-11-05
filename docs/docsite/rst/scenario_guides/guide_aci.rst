@@ -15,7 +15,7 @@ The Cisco Application Centric Infrastructure (ACI) allows application requiremen
 
 
 Application Policy Infrastructure Controller (APIC)
-...................................................
+.....................................................
 The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered controller, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure.
 
 The APIC enables network administrators to easily define the optimal network for applications. Data center operators can clearly see how applications consume network resources, easily isolate and troubleshoot application and infrastructure problems, and monitor and profile resource usage patterns.
@@ -51,7 +51,7 @@ Using the ACI modules
 ---------------------
 The Ansible ACI modules provide a user-friendly interface to managing your ACI environment using Ansible playbooks.
 
-For instance ensuring that a specific tenant exists, is done using the following Ansible task using the aci_tenant module:
+For example ensuring that a specific tenant exists, is done using the following Ansible task using the aci_tenant module:
 
 .. code-block:: yaml
 
@@ -103,15 +103,15 @@ After registering the return values of the aci_tenant task as shown above, you c
 
 
 Running on the controller locally
-.................................
+...................................
 As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or controller (in this case the APIC), but they talk directly to the APIC's REST interface.
 
-For this very reason, the modules need to run on the local Ansible controller (or are delegated to another system that *can* connect to the APIC).
+For this very reason, the modules need to run on the local Ansible control node (or are delegated to another system that *can* connect to the APIC).
 
 
 Gathering facts
 ```````````````
-Because we run the modules on the Ansible controller gathering facts will not work. That is why when using these ACI modules it is mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: false`` to every play.
+Because we run the modules on the Ansible control node gathering facts will not work. That is why when using these ACI modules it is mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: false`` to every play.
 
 .. code-block:: yaml
    :emphasize-lines: 3
@@ -198,7 +198,7 @@ Every Ansible ACI module accepts the following parameters that influence the mod
         Port to use for communication. (Defaults to ``443`` for HTTPS, and ``80`` for HTTP)
 
     username
-        User name used to log on to the APIC. (Defaults to ``admin``)
+        username used to log on to the APIC. (Defaults to ``admin``)
 
     password
         Password for ``username`` to log on to the APIC, using password-based authentication.
@@ -231,7 +231,7 @@ Every Ansible ACI module accepts the following parameters that influence the mod
 
 Proxy support
 .............
-By default, if an environment variable ``<protocol>_proxy`` is set on the target host, requests will be sent through that proxy. This behaviour can be overridden by setting a variable for this task (see :ref:`playbooks_environment`), or by using the ``use_proxy`` module parameter.
+By default, if an environment variable ``<protocol>_proxy`` is set on the target host, requests will be sent through that proxy. This behavior can be overridden by setting a variable for this task (see :ref:`playbooks_environment`), or by using the ``use_proxy`` module parameter.
 
 HTTP redirects can redirect from HTTP to HTTPS so ensure that the proxy environment for both protocols is correctly configured.
 
@@ -457,7 +457,7 @@ The aci_rest module accepts the native XML and JSON payloads, but additionally a
 
 When you're making modifications, you can use the POST or DELETE methods, whereas doing just queries require the GET method.
 
-For instance, if you would like to ensure a specific tenant exists on ACI, these below four examples are functionally identical:
+For example, if you would like to ensure a specific tenant exists on ACI, these below four examples are functionally identical:
 
 **XML** (Native ACI REST)
 
@@ -544,7 +544,7 @@ Feel free to contribute more useful snippets.
 
 
 Waiting for all controllers to be ready
-.......................................
+.........................................
 You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of controllers equals the number listed in the ``apic`` inventory group.
 
 .. code-block:: yaml
@@ -623,7 +623,7 @@ All below issues either have been reported to the vendor, and most can simply be
 
 
     Specific requests are known to not be idempotent (`#35050 <https://github.com/ansible/ansible/issues/35050>`_)
-        The behaviour of the APIC is inconsistent to the use of ``status="created"`` and ``status="deleted"``. The result is that when you use ``status="created"`` in your payload the resulting tasks are not idempotent and creation will fail when the object was already created. However this is not the case with ``status="deleted"`` where such call to an non-existing object does not cause any failure whatsoever.
+        The behavior of the APIC is inconsistent to the use of ``status="created"`` and ``status="deleted"``. The result is that when you use ``status="created"`` in your payload the resulting tasks are not idempotent and creation will fail when the object was already created. However this is not the case with ``status="deleted"`` where such call to an non-existing object does not cause any failure whatsoever.
 
         **NOTE:** A workaround is to avoid using ``status="created"`` and instead use ``status="modified"`` when idempotency is essential to your workflow..
 
@@ -656,4 +656,4 @@ You will find our roadmap, an overview of open ACI issues and pull-requests, and
    `Network Working Group <https://github.com/ansible/community/tree/main/group-network>`_
        The Ansible Network community page, includes contact information and meeting information.
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!

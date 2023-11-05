@@ -30,7 +30,7 @@ To submit a documentation PR from docs.ansible.com with ``Edit on GitHub``:
 #. Enter a commit message in the first rectangle under the heading ``Propose file change`` at the bottom of the GitHub page. The more specific, the better. For example, "fixes typo in my_module description". You can put more detail in the second rectangle if you like. Leave the ``+label: docsite_pr`` there.
 #. Submit the suggested change by clicking on the green "Propose file change" button. GitHub will handle branching and committing for you, and open a page with the heading "Comparing Changes".
 #. Click on ``Create pull request`` to open the PR template.
-#. Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it's the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line.
+#. Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it is the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line.
 #. Submit your change by clicking on ``Create pull request`` button.
 #. Be patient while Ansibot, our automated script, adds labels, pings the docs maintainers, and kicks off a CI testing run.
 #. Keep an eye on your PR - the docs team may ask you for changes.
@@ -66,7 +66,7 @@ If the problem you have noticed is too complex to fix with the ``Edit on GitHub`
 A great documentation GitHub issue or PR includes:
 
 - a specific title
-- a detailed description of the problem (even for a PR - it's hard to evaluate a suggested change unless we know what problem it's meant to solve)
+- a detailed description of the problem (even for a PR - it is hard to evaluate a suggested change unless we know what problem it is meant to solve)
 - links to other information (related issues/PRs, external documentation, pages on docs.ansible.com, and so on)
 
 
@@ -99,7 +99,7 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
       pip install --user --upgrade pip
 
-#. Clone required parts of Ansible core for the docs build.
+#. Clone required parts of Ansible Core for the docs build.
 
    .. code-block:: bash
 
@@ -149,13 +149,13 @@ Building the documentation is the best way to check for errors and review your c
     If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
 
 
-Periodically cloning Ansible core
+Periodically cloning Ansible Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Documentation in the ``ansible/ansible-documentation`` repository builds "on top of" the ``ansible/ansible`` repository.
-When you set up your local build environment, you clone the relevant parts Ansible core.
+When you set up your local build environment, you clone the relevant parts Ansible Core.
 
-To ensure that you use the latest source from Ansible core, you should periodically run the following script before you build documentation:
+To ensure that you use the latest source from Ansible Core, you should periodically run the following script before you build documentation:
 
    .. code-block:: bash
 
@@ -180,7 +180,7 @@ This process compiles all the links but provides minimal log output. If you're w
 
 .. note::
 
-    ``make htmlsingle`` adds ``rst/`` to the beginning of the path you provide in ``rst=``, so you can't type the filename with autocomplete. Here are the error messages you will see if you get this wrong:
+    ``make htmlsingle`` adds ``rst/`` to the beginning of the path you provide in ``rst=``, so you can't type the file name with autocomplete. Here are the error messages you will see if you get this wrong:
 
       - If you run ``make htmlsingle`` from the ``docs/docsite/rst/`` directory: ``make: *** No rule to make target `htmlsingle'.  Stop.``
       - If you run ``make htmlsingle`` from the ``docs/docsite/`` directory with the full path to your rST document: ``sphinx-build: error: cannot find files ['rst/rst/community/documentation_contributions.rst']``.
@@ -221,7 +221,7 @@ Advanced users can build one or more rST files with the sphinx utility directly.
 
   sphinx-build [options] sourcedir outdir [filenames...]
 
-You can specify filenames, or ``–a`` for all files, or omit both to compile only new/changed files.
+You can specify file names, or ``–a`` for all files, or omit both to compile only new/changed files.
 
 For example:
 
@@ -237,8 +237,8 @@ When you submit a documentation pull request, automated tests are run. Those sam
 .. code-block:: bash
 
   make clean -C docs/docsite
-  python tests/sanity.py docs-build
-  python tests/sanity.py rstcheck
+  python tests/checkers.py docs-build
+  python tests/checkers.py rstcheck
 
 It is recommended to run tests on a clean copy of the repository, which is the purpose of the ``make clean`` command.
 

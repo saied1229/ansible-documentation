@@ -51,7 +51,7 @@ After the shebang and UTF-8 coding, add a `copyright line <https://www.linuxfoun
     # Copyright: Contributors to the Ansible project
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-Additions to the module (for instance, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
+Additions to the module (for example, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
 
 .. code-block:: python
 
@@ -99,7 +99,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 :module:
 
   * The name of the module.
-  * Must be the same as the filename, without the ``.py`` extension.
+  * Must be the same as the file name, without the ``.py`` extension.
 
 :short_description:
 
@@ -135,7 +135,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 :options:
 
   * Options are often called `parameters` or `arguments`. Because the documentation field is called `options`, we will use that term.
-  * If the module has no options (for example, it's a ``_facts`` module), all you need is one line: ``options: {}``.
+  * If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``.
   * If your module has options (in other words, accepts arguments), each option should be documented thoroughly. For each module option, include:
 
   :option-name:
@@ -226,7 +226,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
         # Reference by plugin name, including description
         - plugin: ansible.builtin.file
           plugin_type: lookup
-          description: You can use the ansible.builtin.file lookup to read files on the controller.
+          description: You can use the ansible.builtin.file lookup to read files on the control node.
 
         # Reference by rST documentation anchor
         - ref: aci_guide

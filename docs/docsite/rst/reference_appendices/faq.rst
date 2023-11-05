@@ -62,7 +62,7 @@ How do I handle different machines needing different user accounts or ports to l
 
 Setting inventory variables in the inventory file is the easiest way.
 
-For instance, suppose these hosts have different usernames and ports:
+For example, suppose these hosts have different usernames and ports:
 
 .. code-block:: ini
 
@@ -126,7 +126,7 @@ in addition to any ``ssh_args`` from ``ansible.cfg``, so you do not need to
 repeat global ``ControlPersist`` settings in ``ansible_ssh_common_args``.)
 
 Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With
-older versions, it's necessary to execute ``nc %h:%p`` or some equivalent
+older versions, it is necessary to execute ``nc %h:%p`` or some equivalent
 command on the bastion host.
 
 With earlier versions of Ansible, it was necessary to configure a
@@ -209,7 +209,7 @@ A number of them! For a definitive list please see this `Knowledge Base article 
 Running in a virtualenv
 -----------------------
 
-You can install Ansible into a virtualenv on the controller quite simply:
+You can install Ansible into a virtualenv on the control node quite simply:
 
 .. code-block:: shell
 
@@ -225,7 +225,7 @@ If you want to run under Python 3 instead of Python 2 you may want to change tha
     $ source ./ansible/bin/activate
     $ pip install ansible
 
-If you need to use any libraries which are not available through pip (for instance, SELinux Python
+If you need to use any libraries which are not available through pip (for example, SELinux Python
 bindings on systems such as Red Hat Enterprise Linux or Fedora that have SELinux enabled), then you
 need to install them into the virtualenv. There are two methods:
 
@@ -236,7 +236,7 @@ need to install them into the virtualenv. There are two methods:
 
       $ virtualenv ansible --system-site-packages
 
-* Copy those files in manually from the system. For instance, for SELinux bindings you might do:
+* Copy those files in manually from the system. For example, for SELinux bindings you might do:
 
   .. code-block:: shell
 
@@ -245,10 +245,10 @@ need to install them into the virtualenv. There are two methods:
       $ cp -v /usr/lib64/python3.*/site-packages/*selinux*.so ./py3-ansible/lib64/python3.*/site-packages/
 
 
-Running on macOS as a controller
---------------------------------
+Running on macOS as a control node
+----------------------------------
 
-When executing Ansible on a system with macOS as a controller machine one might encounter the following error:
+When executing Ansible on a system with macOS as a control node machine one might encounter the following error:
 
   .. error::
         +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.
@@ -461,7 +461,7 @@ file with a list of servers. To do this, you can just access the "$groups" dicti
         {{ host }}
     {% endfor %}
 
-If you need to access facts about these hosts, for instance, the IP address of each hostname,
+If you need to access facts about these hosts, for example, the IP address of each hostname,
 you need to make sure that the facts have been populated. For example, make sure you have a play that talks to db_servers:
 
 .. code-block:: yaml
@@ -490,7 +490,7 @@ through a role parameter or other input. Variable names can be built by adding s
 
     {{ hostvars[inventory_hostname]['ansible_' ~ which_interface]['ipv4']['address'] }}
 
-The trick about going through hostvars is necessary because it's a dictionary of the entire namespace of variables. ``inventory_hostname``
+The trick about going through hostvars is necessary because it is a dictionary of the entire namespace of variables. ``inventory_hostname``
 is a magic variable that indicates the current host you are looping over in the host loop.
 
 In the example above, if your interface names have dashes, you must replace them with underscores:
@@ -554,7 +554,7 @@ How do I access shell environment variables?
 ++++++++++++++++++++++++++++++++++++++++++++
 
 
-**On controller machine :** Access existing variables from controller use the ``env`` lookup plugin.
+**On control node machine :** Access existing variables from control node use the ``env`` lookup plugin.
 For example, to access the value of the HOME environment variable on the management machine:
 
 .. code-block:: yaml+jinja
@@ -730,7 +730,7 @@ The ``no_log`` attribute can also apply to an entire play:
     - hosts: all
       no_log: True
 
-Though this will make the play somewhat difficult to debug. It's recommended that this
+Though this will make the play somewhat difficult to debug. It is recommended that this
 be applied to single tasks only, once a playbook is completed. Note that the use of the
 ``no_log`` attribute does not prevent data from being shown when debugging Ansible itself through
 the :envvar:`ANSIBLE_DEBUG` environment variable.
@@ -789,19 +789,19 @@ This works for all overridden connection variables, like ``ansible_user``, ``ans
 
 .. _scp_protocol_error_filename:
 
-How do I fix 'protocol error: filename does not match request' when fetching a file?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+How do I fix 'protocol error: file name does not match request' when fetching a file?
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_
-in the SCP client that can trigger this error on the Ansible controller when using SCP as the file transfer mechanism:
+in the SCP client that can trigger this error on the Ansible control node when using SCP as the file transfer mechanism:
 
 .. error::
 
-    failed to transfer file to /tmp/ansible/file.txt\r\nprotocol error: filename does not match request
+    failed to transfer file to /tmp/ansible/file.txt\r\nprotocol error: file name does not match request
 
 In these releases, SCP tries to validate that the path of the file to fetch matches the requested path.
 The validation
-fails if the remote filename requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
+fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
 * Use SFTP instead of SCP by setting ``scp_if_ssh`` to ``smart`` (which tries SFTP first) or to ``False``. You can do this in one of four ways:
     * Rely on the default setting, which is ``smart`` - this works if ``scp_if_ssh`` is not explicitly set anywhere
@@ -814,7 +814,7 @@ fails if the remote filename requires quotes to escape spaces or non-ascii chara
     * Export or pass an environment variable: ``ANSIBLE_SCP_EXTRA_ARGS=-T``
     * Modify your ``ansible.cfg`` file: add ``scp_extra_args=-T`` to the ``[ssh_connection]`` section
 
-.. note:: If you see an ``invalid argument`` error when using ``-T``, then your SCP client is not performing filename validation and will not trigger this error.
+.. note:: If you see an ``invalid argument`` error when using ``-T``, then your SCP client is not performing file name validation and will not trigger this error.
 
 .. _mfa_support:
 
@@ -946,4 +946,4 @@ If you have not found an answer to your questions, you can ask on one of our mai
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!

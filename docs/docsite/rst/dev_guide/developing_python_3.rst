@@ -13,9 +13,9 @@ that will run on the same versions of Python as the rest of Ansible.
 
 We do have some considerations depending on the types of Ansible code:
 
-1. controller-side code - code that runs on the machine where you invoke :command:`/usr/bin/ansible`, only needs to support the controller's Python versions.
+1. code on the control node - code that runs on the machine where you invoke :command:`/usr/bin/ansible`, only needs to support the control node's Python versions.
 2. modules - the code which Ansible transmits to and invokes on the managed machine. Modules need to support the 'managed node' Python versions, with some exceptions.
-3. shared ``module_utils`` code - the common code that is  used by modules to perform tasks and sometimes used by controller-side code as well. Shared ``module_utils`` code needs to support the same range of Python as the modules.
+3. shared ``module_utils`` code - the common code that is  used by modules to perform tasks and sometimes used by code on the control node. Shared ``module_utils`` code needs to support the same range of Python as the modules.
 
 However, the three types of code do not use the same string strategy. If you're developing a module or some ``module_utils`` code, be sure to read the section on string strategy carefully.
 
@@ -60,19 +60,19 @@ and text (:class:`str <python3:str>`) more strict.  Python 3 will throw an excep
 trying to combine and compare the two types.  The programmer has to explicitly
 convert from one type to the other to mix values from each.
 
-In Python 3 it's immediately apparent to the programmer when code is
+In Python 3 it is immediately apparent to the programmer when code is
 mixing the byte and text types inappropriately, whereas in Python 2, code that mixes those types
 may work until a user causes an exception by entering non-ASCII input.
 Python 3 forces programmers to proactively define a strategy for
 working with strings in their program so that they don't mix text and byte strings unintentionally.
 
-Ansible uses different strategies for working with strings in controller-side code, in
+Ansible uses different strategies for working with strings in the code on the control node, in
 :ref: `modules <module_string_strategy>`, and in :ref:`module_utils <module_utils_string_strategy>` code.
 
-.. _controller_string_strategy:
+.. _control_node_string_strategy:
 
-Controller string strategy: the Unicode Sandwich
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Control node string strategy: the Unicode Sandwich
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Until recently ``ansible-core`` supported Python 2.x and followed this strategy, known as the Unicode Sandwich (named
 after Python 2's :func:`unicode  <python:unicode>` text type).  For Unicode Sandwich we know that
@@ -91,11 +91,11 @@ dealing with unicode problematic.
 While we will not be using it most of it anymore, the documentation below is still useful for those developing modules
 that still need to support both Python 2 and 3 simultaneously.
 
-Unicode Sandwich common borders: places to convert bytes to text in controller code
------------------------------------------------------------------------------------
+Unicode Sandwich common borders: places to convert bytes to text in control node code
+-------------------------------------------------------------------------------------
 
 This is a partial list of places where we have to convert to and from bytes
-when using the Unicode Sandwich string strategy. It's not exhaustive but
+when using the Unicode Sandwich string strategy. It is not exhaustive but
 it gives you an idea of where to watch for problems.
 
 Reading and writing to files
@@ -139,12 +139,12 @@ to UTF-8.
 Filesystem interaction
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Dealing with filenames often involves dropping back to bytes because on UNIX-like
-systems filenames are bytes.  On Python 2, if we pass a text string to these
+Dealing with file names often involves dropping back to bytes because on UNIX-like
+systems file names are bytes.  On Python 2, if we pass a text string to these
 functions, the text string will be converted to a byte string inside of the
 function and a traceback will occur if non-ASCII characters are present.  In
 Python 3, a traceback will only occur if the text string can't be decoded in
-the current locale, but it's still good to be explicit and have code which
+the current locale, but it is still good to be explicit and have code which
 works on both versions:
 
 .. code-block:: python
@@ -171,7 +171,7 @@ away without converting to bytes:
     os.path.join(u'/var/tmp/café', u'くらとみ')
     os.path.split(u'/var/tmp/café/くらとみ')
 
-On the other hand, if the code needs to manipulate the filename and also talk
+On the other hand, if the code needs to manipulate the file name and also talk
 to the filesystem, it can be more convenient to transform to bytes right away
 and manipulate in bytes.
 
@@ -190,7 +190,7 @@ interfaces are all byte-oriented so the Python interface is byte oriented as
 well.  On both Python 2 and Python 3, byte strings should be given to Python's
 subprocess library and byte strings should be expected back from it.
 
-One of the main places in Ansible's controller code that we interact with
+One of the main places in Ansible's control node code that we interact with
 other programs is the connection plugins' ``exec_command`` methods.  These
 methods transform any text strings they receive in the command (and arguments
 to the command) to execute into bytes and return stdout and stderr as byte strings
@@ -225,8 +225,8 @@ Module_utils string strategy: hybrid
 
 In ``module_utils`` code we use a hybrid string strategy. Although Ansible's
 ``module_utils`` code is largely like module code, some pieces of it are
-used by the controller as well. So it needs to be compatible with modules
-and with the controller's assumptions, particularly the string strategy.
+used by the control node as well. So it needs to be compatible with modules
+and with the control node's assumptions, particularly the string strategy.
 The module_utils code attempts to accept native strings as input
 to its functions and emit native strings as their output.
 
@@ -280,7 +280,7 @@ Prefix byte strings with ``b_``
 
 Since mixing text and bytes types leads to tracebacks we want to be clear
 about what variables hold text and what variables hold bytes.  We do this by
-prefixing any variable holding bytes with ``b_``.  For instance:
+prefixing any variable holding bytes with ``b_``.  For example:
 
 .. code-block:: python
 
@@ -340,8 +340,8 @@ Update octal numbers
 In Python 2.x, octal literals could be specified as ``0755``.  In Python 3,
 octals must be specified as ``0o755``.
 
-String formatting for controller code
--------------------------------------
+String formatting for control node code
+---------------------------------------
 
 Use ``str.format()`` for Python 2.6 compatibility
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

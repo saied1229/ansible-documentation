@@ -279,8 +279,8 @@ amazon.aws
 community.aws
 ~~~~~~~~~~~~~
 
-- ecs_service -  In a release after 2024-06-01, tha default value of ``purge_placement_constraints`` will be change from ``false`` to ``true`` (https://github.com/ansible-collections/community.aws/pull/1716).
-- ecs_service -  In a release after 2024-06-01, tha default value of ``purge_placement_strategy`` will be change from ``false`` to ``true`` (https://github.com/ansible-collections/community.aws/pull/1716).
+- ecs_service -  In a release after 2024-06-01, the default value of ``purge_placement_constraints`` will be change from ``false`` to ``true`` (https://github.com/ansible-collections/community.aws/pull/1716).
+- ecs_service -  In a release after 2024-06-01, the default value of ``purge_placement_strategy`` will be change from ``false`` to ``true`` (https://github.com/ansible-collections/community.aws/pull/1716).
 - iam_role - All top level return values other than ``iam_role`` and ``changed`` have been deprecated and will be removed in a release after 2023-12-01 (https://github.com/ansible-collections/community.aws/issues/551).
 - iam_role - In a release after 2023-12-01 the contents of ``assume_role_policy_document`` will no longer be converted from CamelCase to snake_case.  The ``assume_role_policy_document_raw`` return value already returns the policy document in this future format (https://github.com/ansible-collections/community.aws/issues/551).
 - iam_role_info - In a release after 2023-12-01 the contents of ``assume_role_policy_document`` will no longer be converted from CamelCase to snake_case.  The ``assume_role_policy_document_raw`` return value already returns the policy document in this future format (https://github.com/ansible-collections/community.aws/issues/551).
@@ -463,7 +463,7 @@ community.routeros
 ~~~~~~~~~~~~~~~~~~
 
 - api_modify - when limits for entries in ``queue tree`` are defined as human readable - for example ``25M`` -, the configuration will be correctly set in ROS, but the module will indicate the item is changed on every run even when there was no change done. This is caused by the ROS API which returns the number in bytes - for example ``25000000`` (which is inconsistent with the CLI behavior). In order to mitigate that, the limits have to be defined in bytes (those will still appear as human readable in the ROS CLI) (https://github.com/ansible-collections/community.routeros/pull/131).
-- api_modify, api_info - ``routing ospf area``, ``routing ospf area range``, ``routing ospf instance``, ``routing ospf interface-template`` paths are not fully implemeted for ROS6 due to the significat changes between ROS6 and ROS7 (https://github.com/ansible-collections/community.routeros/pull/131).
+- api_modify, api_info - ``routing ospf area``, ``routing ospf area range``, ``routing ospf instance``, ``routing ospf interface-template`` paths are not fully implemented for ROS6 due to the significant changes between ROS6 and ROS7 (https://github.com/ansible-collections/community.routeros/pull/131).
 
 Major Changes
 -------------
@@ -579,7 +579,7 @@ amazon.aws
 - ec2_vpc_route_table - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
 - elb_classic_lb - the ``ec2_elb`` fact has been removed (https://github.com/ansible-collections/amazon.aws/pull/827).
 - module_utils - Support for the original AWS SDK aka ``boto`` has been removed, including all relevant helper functions. All modules should now use the ``boto3``/``botocore`` AWS SDK (https://github.com/ansible-collections/amazon.aws/pull/630)
-- s3_bucket - the previously deprecated alias ``S3_URL`` for the ``s3_url`` parameter has been removed.  Playbooks shuold be updated to use ``s3_url`` (https://github.com/ansible-collections/amazon.aws/pull/908).
+- s3_bucket - the previously deprecated alias ``S3_URL`` for the ``s3_url`` parameter has been removed.  Playbooks should be updated to use ``s3_url`` (https://github.com/ansible-collections/amazon.aws/pull/908).
 - s3_object - the previously deprecated alias ``S3_URL`` for the ``s3_url`` parameter has been removed.  Playbooks should be updated to use ``s3_url`` (https://github.com/ansible-collections/amazon.aws/pull/908).
 
 check_point.mgmt
@@ -626,7 +626,7 @@ community.aws
 - iam_user - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user``.
 - iam_user_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user_info``.
 - kms_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key``.
-- kms_key - managing the KMS IAM Policy via ``policy_mode`` and ``policy_grant_types`` was previously deprecated and has been removed in favor of the ``policy`` option (https://github.com/ansible-collections/community.aws/pull/1344).
+- kms_key - managing the KMS IAM Policy with ``policy_mode`` and ``policy_grant_types`` was previously deprecated and has been removed in favor of the ``policy`` option (https://github.com/ansible-collections/community.aws/pull/1344).
 - kms_key - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
 - kms_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key_info``.
 - lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda``.
@@ -872,7 +872,7 @@ dellemc.enterprise_sonic
 dellemc.openmanage
 ~~~~~~~~~~~~~~~~~~
 
-- Added collection metadata for creating execution environments.
+- Added collection metadata for creating Execution Environments.
 - Refactored the Markdown (MD) files and content for better readability.
 - The share parameters are deprecated from the following modules - idrac_network, idrac_timezone_ntp, dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode.
 - idrac_bios - The module is enhanced to support clear pending BIOS attributes, reset BIOS to default settings, and configure BIOS attribute using Redfish.
@@ -1181,7 +1181,7 @@ Ansible-core
 ~~~~~~~~~~~~
 
 - Deprecate ability of lookup plugins to return arbitrary data. Lookup plugins must return lists, failing to do so will be an error in 2.18. (https://github.com/ansible/ansible/issues/77788)
-- Encryption - Deprecate use of the Python crypt module due to it's impending removal from Python 3.13
+- Encryption - Deprecate use of the Python crypt module due to its impending removal from Python 3.13
 - PlayContext.verbosity is deprecated and will be removed in 2.18. Use ansible.utils.display.Display().verbosity as the single source of truth.
 - ``DEFAULT_FACT_PATH``, ``DEFAULT_GATHER_SUBSET`` and ``DEFAULT_GATHER_TIMEOUT`` are deprecated and will be removed in 2.18. Use ``module_defaults`` keyword instead.
 - ``PlayIterator`` - deprecate ``cache_block_tasks`` and ``get_original_task`` which are noop and unused.

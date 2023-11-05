@@ -50,7 +50,7 @@ To use an inventory plugin, you must provide an inventory source. Most of the ti
 
    ansible hostname -i inventory_source -m ansible.builtin.ping
 
-To start using an inventory plugin with a YAML configuration source, create a file with the accepted filename schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
+To start using an inventory plugin with a YAML configuration source, create a file with the accepted file name schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
 
 .. code-block:: yaml
 
@@ -178,6 +178,6 @@ Use ``ansible-doc -t inventory <plugin name>`` to see plugin-specific documentat
    :ref:`vars_plugins`
        Vars plugins
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

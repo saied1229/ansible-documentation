@@ -94,6 +94,45 @@ Networking
 
 No notable changes
 
+Porting Guide for v8.5.0
+========================
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The next major release, community.general 8.0.0, will drop support for ansible-core 2.11 and 2.12, which have been End of Life for some time now. This means that this collection no longer supports Python 2.6 on the target. Individual content might still work with unsupported ansible-core versions, but that can change at any time. Also please note that from now on, for every new major community.general release, we will drop support for all ansible-core versions that have been End of Life for more than a few weeks on the date of the major release (https://github.com/ansible-community/community-topics/discussions/271, https://github.com/ansible-collections/community.general/pull/7259).
+- redfish_info, redfish_config, redfish_command - the default value ``10`` for the ``timeout`` option is deprecated and will change to ``60`` in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/7295).
+
+Porting Guide for v8.4.0
+========================
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the document for adding notes and examples in Q&A for modules using Integer number as the mkey.
+
+Deprecated Features
+-------------------
+
+- The ``community.azure`` collection is officially unmaintained and has been archived. Therefore, it will be removed from Ansible 10. There is already a successor collection ``azure.azcollection`` in the community package which should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
+- The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/254).
+
+Ansible-core
+~~~~~~~~~~~~
+
+- vault and unfault filters - the undocumented ``vaultid`` parameter is deprecated and will be removed in ansible-core 2.20. Use ``vault_id`` instead.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - the ssh_*_args options are now marked that they will be removed after 2026-01-01.
+
 Porting Guide for v8.3.0
 ========================
 
@@ -410,7 +449,7 @@ community.routeros
 ~~~~~~~~~~~~~~~~~~
 
 - api_modify - when limits for entries in ``queue tree`` are defined as human readable - for example ``25M`` -, the configuration will be correctly set in ROS, but the module will indicate the item is changed on every run even when there was no change done. This is caused by the ROS API which returns the number in bytes - for example ``25000000`` (which is inconsistent with the CLI behavior). In order to mitigate that, the limits have to be defined in bytes (those will still appear as human readable in the ROS CLI) (https://github.com/ansible-collections/community.routeros/pull/131).
-- api_modify, api_info - ``routing ospf area``, ``routing ospf area range``, ``routing ospf instance``, ``routing ospf interface-template`` paths are not fully implemeted for ROS6 due to the significat changes between ROS6 and ROS7 (https://github.com/ansible-collections/community.routeros/pull/131).
+- api_modify, api_info - ``routing ospf area``, ``routing ospf area range``, ``routing ospf instance``, ``routing ospf interface-template`` paths are not fully implemented for ROS6 due to the significant changes between ROS6 and ROS7 (https://github.com/ansible-collections/community.routeros/pull/131).
 
 dellemc.openmanage
 ~~~~~~~~~~~~~~~~~~
@@ -818,7 +857,7 @@ community.general
   we have not heard about anyone using them in those setups. Hence, these
   modules are deprecated, and will be removed in community.general 10.0.0
   in case there are no reports about being still useful, and potentially
-  noone that steps up to maintain them
+  no one that steps up to maintain them
   (https://github.com/ansible-collections/community.general/pull/6493).
 
 community.hashi_vault

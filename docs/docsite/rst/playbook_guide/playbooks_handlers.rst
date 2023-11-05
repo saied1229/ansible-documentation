@@ -46,13 +46,13 @@ This playbook, ``verify-apache.yml``, contains a single play with a handler.
             name: httpd
             state: restarted
 
-In this example playbook, the Apache server is restarted by the handler after all tasks complete in the play.
+In this example playbook, the Apache server is restarted by the handler after all tasks are completed in the play.
 
 
 Notifying handlers
 ------------------
 
-Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that  are notified on a task change. Alternately, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
+Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that are notified on a task change. Alternatively, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
 
 .. code-block:: yaml
 
@@ -76,7 +76,7 @@ Tasks can instruct one or more handlers to execute using the ``notify`` keyword.
           name: apache
           state: restarted
 
-In the above example the handlers are executed on task change in the following order: ``Restart memcached``, ``Restart apache``. Handlers are executed in the order they are defined in the ``handlers`` section, not in the order listed in the ``notify`` statement. Notifying the same handler multiple times will result in executing the handler only once regardless of how many tasks notify it. For example, if multiple tasks update a configuration file and notify a handler to restart Apache, Ansible only bounces Apache once to avoid unnecessary restarts.
+In the above example, the handlers are executed on task change in the following order: ``Restart memcached``, ``Restart apache``. Handlers are executed in the order they are defined in the ``handlers`` section, not in the order listed in the ``notify`` statement. Notifying the same handler multiple times will result in executing the handler only once regardless of how many tasks notify it. For example, if multiple tasks update a configuration file and notify a handler to restart Apache, Ansible only bounces Apache once to avoid unnecessary restarts.
 
 
 Naming handlers
@@ -84,7 +84,7 @@ Naming handlers
 
 Handlers must be named in order for tasks to be able to notify them using the ``notify`` keyword.
 
-Alternately, handlers can utilize the ``listen`` keyword. Using this handler keyword, handlers can listen on topics that can group multiple handlers as follows:
+Alternatively, handlers can utilize the ``listen`` keyword. Using this handler keyword, handlers can listen on topics that can group multiple handlers as follows:
 
 .. code-block:: yaml
 
@@ -110,7 +110,7 @@ Notifying the ``restart web services`` topic results in executing all handlers l
 
 This use makes it much easier to trigger multiple handlers. It also decouples handlers from their names, making it easier to share handlers among playbooks and roles (especially when using third-party roles from a shared source such as Ansible Galaxy).
 
-Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one defined is notified with ``notify``, effectively shadowing all of the previous handlers with the same name. Alternately handlers sharing the same name can all be notified and executed if they listen on the same topic by notifying that topic.
+Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one loaded into the play can be notified and executed, effectively shadowing all of the previous handlers with the same name.
 
 There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
 
@@ -172,9 +172,9 @@ While handler names can contain a template, ``listen`` topics cannot.
 Handlers in roles
 -----------------
 
-Handlers from roles are not just contained in their roles but rather inserted into global scope with all other handlers from a play. As such they can be used outside of the role they are defined in. It also means that their name can conflict with handlers from outside the role. To ensure that a handler from a role is notified as opposed to one from outside the role with the same name, notify the handler by using its name in the following form: ``role_name : handler_name``.
+Handlers from roles are not just contained in their roles but rather inserted into the global scope with all other handlers from a play. As such they can be used outside of the role they are defined in. It also means that their name can conflict with handlers from outside the role. To ensure that a handler from a role is notified as opposed to one from outside the role with the same name, notify the handler by using its name in the following form: ``role_name : handler_name``.
 
-Handlers notified within the ``roles`` section are automatically flushed at the end of the ``tasks`` section, but before any ``tasks`` handlers.
+Handlers notified within the ``roles`` section are automatically flushed at the end of the ``tasks`` section but before any ``tasks`` handlers.
 
 
 Includes and imports in handlers

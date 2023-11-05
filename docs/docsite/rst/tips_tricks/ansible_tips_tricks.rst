@@ -124,11 +124,20 @@ Execution tricks
 
 These tips apply to using Ansible, rather than to Ansible artifacts.
 
+Use Execution Environments
+--------------------------
+
+Reduce complexity with portable container images known as `Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_.
+
 Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size and you can use group variables to control the differences between those environments.
+Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in staging environment using flag ``--syntax-check``
+
+.. code-block:: yaml
+
+      ansible-playbook --syntax-check
 
 Update in batches
 -----------------
@@ -193,6 +202,6 @@ This pulls in variables from the `group_vars/os_CentOS.yml` file.
    :ref:`intro_patterns`
        Learn about how to select hosts
    `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
+       Complete playbook files from the GitHub project source
    `Mailing List <https://groups.google.com/group/ansible-project>`_
        Questions? Help? Ideas?  Stop by the list on Google Groups

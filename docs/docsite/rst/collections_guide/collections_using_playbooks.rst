@@ -57,6 +57,8 @@ Within a role, you can control which collections Ansible searches for the tasks 
      - my_namespace.second_collection
      - other_namespace.other_collection
 
+.. _collections_keyword:
+
 Using ``collections`` in playbooks
 ----------------------------------
 
@@ -118,7 +120,7 @@ A few recommendations when creating such playbooks, ``hosts:`` should be generic
 
  - hosts: all  # Use --limit or customized inventory to restrict hosts targeted
 
- - hosts: localhost  # For things you want to restrict to the controller
+ - hosts: localhost  # For things you want to restrict to the control node
 
  - hosts: '{{target|default("webservers")}}'  # Assumes inventory provides a 'webservers' group, but can also use ``-e 'target=host1,host2'``
 

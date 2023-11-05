@@ -4,7 +4,7 @@
 Creating a new collection
 *************************
 
-Starting with Ansible 2.10, related modules should be developed in a collection. The Ansible core team and community compiled these module development tips and tricks to help companies developing Ansible modules for their products and users developing Ansible modules for third-party products. See :ref:`developing_collections` for a more detailed description of the collections format and additional development guidelines.
+Starting with Ansible 2.10, related modules should be developed in a collection. The Ansible Core team and community compiled these module development tips and tricks to help companies developing Ansible modules for their products and users developing Ansible modules for third-party products. See :ref:`developing_collections` for a more detailed description of the collections format and additional development guidelines.
 
 .. contents::
    :local:
@@ -55,7 +55,7 @@ Ansible has a thriving and knowledgeable community of module developers that is 
 In the :ref:`ansible_community_guide` you can find how to:
 
 * Subscribe to the Mailing Lists - We suggest "Ansible Development List" and "Ansible Announce list"
-* ``#ansible-devel`` - We have found that communicating on the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) works best for developers so we can have an interactive dialogue.
+* ``#ansible-devel`` - We have found that communicating on the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) works best for developers so we can have an interactive dialog.
 * Working group and other chat channel meetings - Join the various weekly meetings `meeting schedule and agenda page <https://github.com/ansible/community/blob/main/meetings/README.md>`_
 
 Required files

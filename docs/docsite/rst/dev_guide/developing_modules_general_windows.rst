@@ -104,11 +104,11 @@ multiple Windows hosts in a domain environment. These files are:
 
 - ``Vagrantfile``: The Vagrant file that reads the inventory setup of ``inventory.yml`` and provisions the hosts that are required
 - ``inventory.yml``: Contains the hosts that are required and other connection information such as IP addresses and forwarded ports
-- ``main.yml``: Ansible playbook called by Vagrant to provision the domain controller and join the child hosts to the domain
+- ``main.yml``: Ansible playbook called by Vagrant to provision the domain control node and join the child hosts to the domain
 
 By default, these files will create the following environment:
 
-- A single domain controller running on Windows Server 2016
+- A single AD domain controller running on Windows Server 2016
 - Five child hosts for each major Windows Server version joined to that domain
 - A domain with the DNS name ``domain.local``
 - A local administrator account on each host with the username ``vagrant`` and password ``vagrant``
@@ -153,7 +153,7 @@ protocols can be access over ``127.0.0.1`` using these forwarded ports:
 Replace ``xx`` with the entry number in the inventory file where the domain
 controller started with ``00`` and is incremented from there. For example, in
 the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is
-forwarded over port ``29804`` as it's the fourth entry in ``domain_children``.
+forwarded over port ``29804`` as it is the fourth entry in ``domain_children``.
 
 Windows new module development
 ==============================
@@ -168,7 +168,7 @@ When creating a new module there are a few things to keep in mind:
 - Avoid using try/catch statements over a large code block, rather use them for individual calls so the error message can be more descriptive
 - Try and catch specific exceptions when using try/catch statements
 - Avoid using PSCustomObjects unless necessary
-- Look for common functions in ``./lib/ansible/module_utils/powershell/`` and use the code there instead of duplicating work. These can be imported by adding the line ``#Requires -Module *`` where * is the filename to import, and will be automatically included with the module code sent to the Windows target when run through Ansible
+- Look for common functions in ``./lib/ansible/module_utils/powershell/`` and use the code there instead of duplicating work. These can be imported by adding the line ``#Requires -Module *`` where * is the file name to import, and will be automatically included with the module code sent to the Windows target when run through Ansible
 - As well as PowerShell module utils, C# module utils are stored in ``./lib/ansible/module_utils/csharp/`` and are automatically imported in a module execution if the line ``#AnsibleRequires -CSharpUtil *`` is present
 - C# and PowerShell module utils achieve the same goal but C# allows a developer to implement low level tasks, such as calling the Win32 API, and can be faster in some cases
 - Ensure the code runs under Powershell v5.1 and higher on Windows Server 2016 and higher; if higher minimum Powershell or OS versions are required, ensure the documentation reflects this clearly
@@ -206,7 +206,7 @@ options set:
 - ``default``: The default value for the module option if not set
 - ``deprecated_aliases``: A list of hashtables that define aliases that are deprecated and the versions they will be removed in. Each entry must contain the keys ``name`` and ``collection_name`` with either ``version`` or ``date``
 - ``elements``: When ``type=list``, this sets the type of each list value, the values are the same as ``type``
-- ``no_log``: Will sanitise the input value before being returned in the ``module_invocation`` return value
+- ``no_log``: Will sanitize the input value before being returned in the ``module_invocation`` return value
 - ``removed_in_version``: States when a deprecated module option is to be removed, a warning is displayed to the end user if set
 - ``removed_at_date``: States the date (YYYY-MM-DD) when a deprecated module option will be removed, a warning is displayed to the end user if set
 - ``removed_from_collection``: States from which collection the deprecated module option will be removed; must be specified if one of ``removed_in_version`` and ``removed_at_date`` is specified
@@ -407,7 +407,7 @@ folder called ``module_utils`` located in the root folder of the playbook or rol
 directory.
 
 C# module utilities can also be stored outside of the standard Ansible distribution for use with custom modules. Like
-PowerShell utils, these are stored in a folder called ``module_utils`` and the filename must end in the extension
+PowerShell utils, these are stored in a folder called ``module_utils`` and the file name must end in the extension
 ``.cs``, start with ``Ansible.``  and be named after the namespace defined in the util.
 
 The below example is a role structure that contains two PowerShell custom module_utils called

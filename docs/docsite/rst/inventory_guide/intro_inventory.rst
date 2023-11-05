@@ -11,7 +11,7 @@ Once your inventory is defined, you use :ref:`patterns <intro_patterns>` to sele
 The simplest inventory is a single file with a list of hosts and groups. The default location for this file is ``/etc/ansible/hosts``.
 You can specify a different inventory file at the command line using the ``-i <path>`` option or in configuration using ``inventory``.
 
-Ansible :ref:`inventory_plugins` support a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three options beyond the ``/etc/ansible/hosts`` file:
+Ansible :ref:`inventory_plugins` supports a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three options beyond the ``/etc/ansible/hosts`` file:
 
 - You can create a directory with multiple inventory files. See :ref:`inventory_directory`. These can use different formats (YAML, ini, and so on).
 - You can pull inventory dynamically. For example, you can use a dynamic inventory plugin to list resources in one or more cloud providers. See :ref:`intro_dynamic_inventory`.
@@ -76,7 +76,7 @@ Every host will always belong to at least 2 groups (``all`` and ``ungrouped`` or
 Hosts in multiple groups
 ------------------------
 
-You can (and probably will) put each host in more than one group. For example a production webserver in a datacenter in Atlanta might be included in groups called ``[prod]`` and ``[atlanta]`` and ``[webservers]``. You can create groups that track:
+You can put each host in more than one group. For example, a production web server in a data center in Atlanta might be included in groups called ``[prod]`` and ``[atlanta]`` and ``[webservers]``. You can create groups that track:
 
 * What - An application, stack or microservice (for example, database servers, web servers, and so on).
 * Where - A datacenter or region, to talk to local DNS, storage, and so on (for example, east, west).
@@ -165,9 +165,9 @@ Here is the same inventory as shown above, simplified with parent groups for the
 
 Child groups have a couple of properties to note:
 
-* Any host that is member of a child group is automatically a member of the parent group.
+* Any host that is a member of a child group is automatically a member of the parent group.
 * Groups can have multiple parents and children, but not circular relationships.
-* Hosts can also be in multiple groups, but there will only be **one** instance of a host at runtime. Ansible merges the data from the multiple groups.
+* Hosts can also be in multiple groups, but there will only be **one** instance of a host at runtime. Ansible merges the data from multiple groups.
 
 Adding ranges of hosts
 ----------------------
@@ -263,7 +263,7 @@ You can also configure the inventory directory in your ``ansible.cfg`` file. See
 Managing inventory load order
 -----------------------------
 
-Ansible loads inventory sources in ASCII order according to the filenames. If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. If the parent groups are loaded first, you will see the error ``Unable to parse /path/to/source_of_parent_groups as an inventory source``.
+Ansible loads inventory sources in ASCII order according to the file names. If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. If the parent groups are loaded first, you will see the error ``Unable to parse /path/to/source_of_parent_groups as an inventory source``.
 
 For example, if you have a file called ``groups-of-groups`` that defines a ``production`` group with child groups defined in a file called ``on-prem``, Ansible cannot parse the ``production`` group. To avoid this problem, you can control the load order by adding prefixes to the files:
 
@@ -291,7 +291,7 @@ We document adding variables in the main inventory file for simplicity. However,
 Assigning a variable to one machine: host variables
 ===================================================
 
-You can easily assign a variable to a single host, then use it later in playbooks. You can do this directly in your inventory file.
+You can easily assign a variable to a single host and then use it later in playbooks. You can do this directly in your inventory file.
 
 In INI:
 
@@ -465,7 +465,7 @@ In YAML:
       northwest:
       southwest:
 
-A child group's variables will have higher precedence (override) a parent group's variables.
+A child group's variables will have higher precedence (override) than a parent group's variables.
 
 .. _splitting_out_vars:
 
@@ -514,14 +514,14 @@ is an excellent way to track changes to your inventory and host variables.
 How variables are merged
 ========================
 
-By default variables are merged/flattened to the specific host before a play is run. This keeps Ansible focused on the Host and Task, so groups don't really survive outside of inventory and host matching. By default, Ansible overwrites variables including the ones defined for a group and/or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence is (from lowest to highest):
+By default, variables are merged/flattened to the specific host before a play is run. This keeps Ansible focused on the Host and Task, so groups do not survive outside of inventory and host matching. By default, Ansible overwrites variables including the ones defined for a group and/or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence is (from lowest to highest):
 
 - all group (because it is the 'parent' of all other groups)
 - parent group
 - child group
 - host
 
-By default Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an a_group will be merged with b_group and b_group vars that match will overwrite the ones in a_group.
+By default, Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an ``a_group`` will be merged with ``b_group`` and ``b_group`` vars that match will overwrite the ones in ``a_group``.
 
 You can change this behavior by setting the group variable ``ansible_group_priority`` to change the merge order for groups of the same level (after the parent/child order is resolved). The larger the number, the later it will be merged, giving it higher priority. This variable defaults to ``1`` if not set. For example:
 
@@ -550,7 +550,7 @@ When you pass multiple inventory sources at the command line, Ansible merges var
 * Pass  ``-i staging -i production`` to run the playbook with ``myvar = 2``.
 * Pass ``-i production -i staging`` to run the playbook with ``myvar = 1``. 
 
-When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the filenames. You can control the load order by adding prefixes to the files:
+When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the file names. You can control the load order by adding prefixes to the files:
 
 .. code-block:: text
 
@@ -571,14 +571,14 @@ For more details on inventory plugins and dynamic inventory scripts see :ref:`in
 Connecting to hosts: behavioral inventory parameters
 ====================================================
 
-As described above, setting the following variables control how Ansible interacts with remote hosts.
+As described above, setting the following variables controls how Ansible interacts with remote hosts.
 
 Host connection:
 
 .. include:: shared_snippets/SSH_password_prompt.txt
 
 ansible_connection
-    Connection type to the host. This can be the name of any of ansible's connection plugins. SSH protocol types are ``smart``, ``ssh`` or ``paramiko``.  The default is smart. Non-SSH based types are described in the next section.
+    Connection type to the host. This can be the name of any Ansible connection plugin. SSH protocol types are ``smart``, ``ssh`` or ``paramiko``.  The default is smart. Non-SSH based types are described in the next section.
 
 General for all connections:
 
@@ -587,7 +587,7 @@ ansible_host
 ansible_port
     The connection port number, if not the default (22 for ssh)
 ansible_user
-    The user name to use when connecting to the host
+    The username to use when connecting to the host
 ansible_password
     The password to use to authenticate to the host (never store this variable in plain text; always use a vault. See :ref:`tip_for_variables_and_vaults`)
 
@@ -595,7 +595,7 @@ ansible_password
 Specific to the SSH connection:
 
 ansible_ssh_private_key_file
-    Private key file used by ssh.  Useful if using multiple keys and you don't want to use SSH agent.
+    Private key file used by SSH. Useful if using multiple keys and you do not want to use SSH agent.
 ansible_ssh_common_args
     This setting is always appended to the default command line for :command:`sftp`, :command:`scp`,
     and :command:`ssh`. Useful to configure a ``ProxyCommand`` for a certain host (or
@@ -609,7 +609,7 @@ ansible_ssh_extra_args
 ansible_ssh_pipelining
     Determines whether or not to use SSH pipelining. This can override the ``pipelining`` setting in :file:`ansible.cfg`.
 ansible_ssh_executable (added in version 2.2)
-    This setting overrides the default behavior to use the system :command:`ssh`. This can override the ``ssh_executable`` setting in :file:`ansible.cfg`.
+    This setting overrides the default behavior to use the system :command:`ssh`. This can override the ``ssh_executable`` setting in :file:`ansible.cfg` under ``ssh_connection``.
 
 
 Privilege escalation (see :ref:`Ansible Privilege Escalation<become>` for further details):
@@ -619,13 +619,13 @@ ansible_become
 ansible_become_method
     Allows to set privilege escalation method
 ansible_become_user
-    Equivalent to ``ansible_sudo_user`` or ``ansible_su_user``, allows to set the user you become through privilege escalation
+    Equivalent to ``ansible_sudo_user`` or ``ansible_su_user``, allows you to set the user you become through privilege escalation
 ansible_become_password
     Equivalent to ``ansible_sudo_password`` or ``ansible_su_password``, allows you to set the privilege escalation password (never store this variable in plain text; always use a vault. See :ref:`tip_for_variables_and_vaults`)
 ansible_become_exe
     Equivalent to ``ansible_sudo_exe`` or ``ansible_su_exe``, allows you to set the executable for the escalation method selected
 ansible_become_flags
-    Equivalent to ``ansible_sudo_flags`` or ``ansible_su_flags``, allows you to set the flags passed to the selected escalation method. This can be also set globally in :file:`ansible.cfg` in the ``sudo_flags`` option
+    Equivalent to ``ansible_sudo_flags`` or ``ansible_su_flags``, allows you to set the flags passed to the selected escalation method. This can be also set globally in :file:`ansible.cfg` in the ``become_flags`` option under ``privilege_escalation``.
 
 Remote host environment parameters:
 
@@ -633,14 +633,14 @@ Remote host environment parameters:
 
 ansible_shell_type
     The shell type of the target system. You should not use this setting unless you have set the
-    :ref:`ansible_shell_executable<ansible_shell_executable>` to a non-Bourne (sh) compatible shell.  By default commands are
+    :ref:`ansible_shell_executable<ansible_shell_executable>` to a non-Bourne (sh) compatible shell.  By default, commands are
     formatted using ``sh``-style syntax.  Setting this to ``csh`` or ``fish`` will cause commands
     executed on target systems to follow those shell's syntax instead.
 
 .. _ansible_python_interpreter:
 
 ansible_python_interpreter
-    The target host python path. This is useful for systems with more
+    The target host Python path. This is useful for systems with more
     than one Python or not located at :command:`/usr/bin/python` such as \*BSD, or where :command:`/usr/bin/python`
     is not a 2.X series Python.  We do not use the :command:`/usr/bin/env` mechanism as that requires the remote user's
     path to be set right and also assumes the :program:`python` executable is named python, where the executable might
@@ -648,16 +648,16 @@ ansible_python_interpreter
 
 ansible_*_interpreter
     Works for anything such as ruby or perl and works just like :ref:`ansible_python_interpreter<ansible_python_interpreter>`.
-    This replaces shebang of modules which will run on that host.
+    This replaces shebang of modules that will run on that host.
 
 .. versionadded:: 2.1
 
 .. _ansible_shell_executable:
 
 ansible_shell_executable
-    This sets the shell the ansible controller will use on the target machine,
+    This sets the shell the ansible control node will use on the target machine,
     overrides ``executable`` in :file:`ansible.cfg` which defaults to
-    :command:`/bin/sh`.  You should really only change it if is not possible
+    :command:`/bin/sh`.  You should only change this value if it is not possible
     to use :command:`/bin/sh` (in other words, if :command:`/bin/sh` is not installed on the target
     machine or cannot be run from sudo.).
 
@@ -674,54 +674,8 @@ Non-SSH connection types
 ------------------------
 
 As stated in the previous section, Ansible executes playbooks over SSH but it is not limited to this connection type.
-With the host specific parameter ``ansible_connection=<connector>``, the connection type can be changed.
-The following non-SSH based connectors are available:
-
-**local**
-
-This connector can be used to deploy the playbook to the control machine itself.
-
-**docker**
-
-This connector deploys the playbook directly into Docker containers using the local Docker client. The following parameters are processed by this connector:
-
-ansible_host
-    The name of the Docker container to connect to.
-ansible_user
-    The user name to operate within the container. The user must exist inside the container.
-ansible_become
-    If set to ``true`` the ``become_user`` will be used to operate within the container.
-ansible_docker_extra_args
-    Could be a string with any additional arguments understood by Docker, which are not command specific. This parameter is mainly used to configure a remote Docker daemon to use.
-
-Here is an example of how to instantly deploy to created containers:
-
-.. code-block:: yaml
-
-   - name: Create a jenkins container
-     community.general.docker_container:
-       docker_host: myserver.net:4243
-       name: my_jenkins
-       image: jenkins
-
-   - name: Add the container to inventory
-     ansible.builtin.add_host:
-       name: my_jenkins
-       ansible_connection: docker
-       ansible_docker_extra_args: "--tlsverify --tlscacert=/path/to/ca.pem --tlscert=/path/to/client-cert.pem --tlskey=/path/to/client-key.pem -H=tcp://myserver.net:4243"
-       ansible_user: jenkins
-     changed_when: false
-
-   - name: Create a directory for ssh keys
-     delegate_to: my_jenkins
-     ansible.builtin.file:
-       path: "/var/jenkins_home/.ssh/jupiter"
-       state: directory
-
+With the host-specific parameter ``ansible_connection=<connector>``, the connection type can be changed.
 For a full list with available plugins and examples, see :ref:`connection_plugin_list`.
-
-.. note:: If you're reading the docs from the beginning, this may be the first example you've seen of an Ansible playbook. This is not an inventory file.
-          Playbooks will be covered in great detail later in the docs.
 
 .. _inventory_setup_examples:
 
@@ -735,10 +689,10 @@ See also :ref:`sample_setup`, which shows inventory along with playbooks and oth
 Example: One inventory per environment
 --------------------------------------
 
-If you need to manage multiple environments it's sometimes prudent to
+If you need to manage multiple environments it is sometimes prudent to
 have only hosts of a single environment defined per inventory. This
-way, it is harder to, for instance, accidentally change the state of
-nodes inside the "test" environment when you actually wanted to update
+way, it is harder to, for example, accidentally change the state of
+nodes inside the "test" environment when you wanted to update
 some "staging" servers.
 
 For the example mentioned above you could have an
@@ -783,9 +737,9 @@ following command:
 Example: Group by function
 --------------------------
 
-In the previous section you already saw an example for using groups in
+In the previous section, you already saw an example of using groups in
 order to cluster hosts that have the same function. This allows you,
-for instance, to define firewall rules inside a playbook or role
+for example, to define firewall rules inside a playbook or role
 affecting only database servers:
 
 .. code-block:: yaml

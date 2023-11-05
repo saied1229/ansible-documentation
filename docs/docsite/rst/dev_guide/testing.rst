@@ -32,7 +32,7 @@ At a high level we have the following classifications of tests:
   * The primary purpose of these tests is to enforce Ansible coding standards and requirements.
 :integration:
   * :ref:`testing_integration`
-  * Functional tests of modules and Ansible core functionality.
+  * Functional tests of modules and Ansible Core functionality.
 :units:
   * :ref:`testing_units`
   * Tests directly against individual parts of the code base.
@@ -201,7 +201,7 @@ Run integration tests
 
 More information: :ref:`testing_integration`
 
-Any potential issues should be added as comments on the pull request (and it's acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``
+Any potential issues should be added as comments on the pull request (and it is acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``
 
 Example:
 

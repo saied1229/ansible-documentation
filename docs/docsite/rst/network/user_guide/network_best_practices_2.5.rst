@@ -111,7 +111,7 @@ The following variables are common for all platforms in the inventory, though th
 
 :ansible_connection:
 
-  Ansible uses the ansible-connection setting to determine how to connect to a remote device. When working with Ansible Networking, set this to an appropriate network connection option, such as``ansible.netcommon.network_cli``, so Ansible treats the remote node as a network device with a limited execution environment. Without this setting, Ansible would attempt to use ssh to connect to the remote and execute the Python script on the network device, which would fail because Python generally isn't available on network devices.
+  Ansible uses the ansible-connection setting to determine how to connect to a remote device. When working with Ansible Networking, set this to an appropriate network connection option, such as``ansible.netcommon.network_cli``, so Ansible treats the remote node as a network device with a limited Execution Environment. Without this setting, Ansible would attempt to use ssh to connect to the remote and execute the Python script on the network device, which would fail because Python generally isn't available on network devices.
 :ansible_network_os:
   Informs Ansible which Network platform this hosts corresponds to. This is required when using the ``ansible.netcommon.*`` connection options.
 :ansible_user: The user to connect to the remote device (switch) as. Without this the user that is running ``ansible-playbook`` would be used.
@@ -142,7 +142,7 @@ For more information, see the :ref:`using become with network modules<become_net
 Jump hosts
 ----------
 
-If the Ansible Controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this.
+If the Ansible control node does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this.
 
 Example 1: collecting facts and creating backup files with a playbook
 =====================================================================

@@ -30,7 +30,7 @@ In addition to the default configuration settings in :ref:`ansible_configuration
 the connection variable :ref:`ansible_shell_type <ansible_shell_type>` to select the plugin to use.
 In this case, you will also want to update the :ref:`ansible_shell_executable <ansible_shell_executable>` to match.
 
-You can further control the settings for each plugin via other configuration options
+You can further control the settings for each plugin with other configuration options
 detailed in the plugin themselves (linked below).
 
 .. seealso::
@@ -48,6 +48,6 @@ detailed in the plugin themselves (linked below).
    :ref:`lookup_plugins`
        Lookup plugins
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

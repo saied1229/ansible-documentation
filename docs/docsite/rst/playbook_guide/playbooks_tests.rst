@@ -8,7 +8,7 @@ Tests
 
 The main difference between tests and filters are that Jinja tests are used for comparisons, whereas filters are used for data manipulation, and have different applications in jinja. Tests can also be used in list processing filters, like ``map()`` and ``select()`` to choose items in the list.
 
-Like all templating, tests always execute on the Ansible controller, **not** on the target of a task, as they test local data.
+Like all templating, tests always execute on the Ansible control node, **not** on the target of a task, as they test local data.
 
 In addition to those Jinja2 tests, Ansible supplies a few more and users can easily create their own.
 
@@ -172,7 +172,7 @@ As of Ansible 2.11 the ``version`` test accepts a ``version_type`` parameter whi
     loose, strict, semver, semantic, pep440
 
 ``loose``
-  This type corresponds to the Python ``distutils.version.LooseVersion`` class. All version formats are valid for this type. The rules for comparison are simple and predictable, but may not always give expected results.
+  This type corresponds to the Python ``distutils.version.LooseVersion`` class. All version formats are valid for this type. The rules for comparison are simple and predictable, but may not always give the expected results.
 
 ``strict``
   This type corresponds to the Python ``distutils.version.StrictVersion`` class. A version number consists of two or three dot-separated numeric components, with an optional "pre-release" tag on the end. The pre-release tag consists of a single letter 'a' or 'b' followed by a number.  If the numeric components of two version numbers are equal, then one with a pre-release tag will always be deemed earlier (lesser) than one without.
@@ -304,7 +304,7 @@ Testing paths
 
 .. note:: In 2.5 the following tests were renamed to remove the ``is_`` prefix
 
-The following tests can provide information about a path on the controller
+The following tests can provide information about a path on the control node
 
 .. code-block:: yaml
 
@@ -356,7 +356,7 @@ you provide Byte format to computers and human-readable format to people.
 Human readable
 --------------
 
-Asserts whether the given string is human readable or not.
+Asserts whether the given string is human-readable or not.
 
 For example
 
@@ -516,8 +516,8 @@ When looking to determine types, it may be tempting to use the ``type_debug`` fi
         - FALSE
         assert:
           that:
-          # Note that while other values may be cast to boolean values, these are the only ones which are natively considered boolean
-          # Note also that `yes` is the only case sensitive variant of these values.
+          # Note that while other values may be cast to boolean values, these are the only ones that are natively considered boolean
+          # Note also that `yes` is the only case-sensitive variant of these values.
           - item is boolean
 
 .. _builtin tests: https://jinja.palletsprojects.com/en/latest/templates/#builtin-tests
@@ -537,6 +537,6 @@ When looking to determine types, it may be tempting to use the ``type_debug`` fi
    :ref:`tips_and_tricks`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

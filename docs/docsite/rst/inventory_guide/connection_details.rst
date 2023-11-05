@@ -9,14 +9,14 @@ This section shows you how to expand and refine the connection methods Ansible u
 ControlPersist and paramiko
 ---------------------------
 
-By default, Ansible uses native OpenSSH, because it supports ControlPersist (a performance feature), Kerberos, and options in ``~/.ssh/config`` such as Jump Host setup. If your control machine uses an older version of OpenSSH that does not support ControlPersist, Ansible will fallback to a Python implementation of OpenSSH called 'paramiko'.
+By default, Ansible uses native OpenSSH, because it supports ControlPersist (a performance feature), Kerberos, and options in ``~/.ssh/config`` such as Jump Host setup. If your control machine uses an older version of OpenSSH that does not support ControlPersist, Ansible will fall back to a Python implementation of OpenSSH called 'paramiko'.
 
 .. _connection_set_user:
 
 Setting a remote user
 ---------------------
 
-By default, Ansible connects to all remote devices with the user name you are using on the control node. If that user name does not exist on a remote device, you can set a different user name for the connection. If you just need to do some tasks as a different user, look at :ref:`become`. You can set the connection user in a playbook:
+By default, Ansible connects to all remote devices with the username you are using on the control node. If that username does not exist on a remote device, you can set a different username for the connection. If you just need to do some tasks as a different user, look at :ref:`become`. You can set the connection user in a playbook:
 
 .. code-block:: yaml
 
@@ -108,16 +108,16 @@ If you understand the implications and wish to disable this behavior, you can do
     [defaults]
     host_key_checking = False
 
-Alternatively this can be set by the :envvar:`ANSIBLE_HOST_KEY_CHECKING` environment variable:
+Alternatively, this can be set by the :envvar:`ANSIBLE_HOST_KEY_CHECKING` environment variable:
 
 .. code-block:: bash
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
-Also note that host key checking in paramiko mode is reasonably slow, therefore switching to 'ssh' is also recommended when using this feature.
+Also note that host key checking in ``paramiko`` mode is reasonably slow, therefore switching to 'ssh' is also recommended when using this feature.
 
 Other connection methods
 ------------------------
 
 Ansible can use a variety of connection methods beyond SSH. You can select any connection plugin, including managing things locally and managing chroot, lxc, and jail containers.
-A mode called 'ansible-pull' can also invert the system and have systems 'phone home' via scheduled git checkouts to pull configuration directives from a central repository.
+A mode called 'ansible-pull' can also invert the system and have systems 'phone home' with scheduled git checkouts to pull configuration directives from a central repository.

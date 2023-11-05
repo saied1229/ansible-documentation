@@ -4,7 +4,7 @@ Glossary
 The following is a list (and re-explanation) of term definitions used elsewhere in the Ansible documentation.
 
 Consult the documentation home page for the full documentation and to see the terms in context, but this should be a good resource
-to check your knowledge of Ansible's components and understand how they fit together.  It's something you might wish to read for review or
+to check your knowledge of Ansible's components and understand how they fit together.  It is something you might wish to read for review or
 when a term comes up on the mailing list.
 
 .. glossary::
@@ -21,7 +21,7 @@ when a term comes up on the mailing list.
         of an ad hoc command might be rebooting 50 machines in your
         infrastructure.  Anything you can do ad hoc can be accomplished by
         writing a :term:`playbook <playbooks>` and playbooks can also glue
-        lots of other operations together.
+        several other operations together.
 
     Ansible (the package)
         A software package (Python, deb, rpm, and so on) that contains ansible-core and a select group of collections. Playbooks that worked with Ansible 2.9 should still work with the Ansible 2.10 package. See the :file:`ansible-<version>.build` file in the release-specific directory at  `ansible-build-data <https://github.com/ansible-community/ansible-build-data>`_ for a list of collections included in Ansible, as well as the included ``ansible-core`` version.
@@ -115,7 +115,7 @@ when a term comes up on the mailing list.
         A core software component of Ansible that is the power behind
         :command:`/usr/bin/ansible` directly -- and corresponds to the
         invocation of each task in a :term:`playbook <playbooks>`.  The
-        Executor is something Ansible developers may talk about, but it's not
+        Executor is something Ansible developers may talk about, but it is not
         really user land vocabulary.
 
     Facts
@@ -159,9 +159,9 @@ when a term comes up on the mailing list.
         a playbook allows this implicit fact gathering to be skipped.
 
     Globbing
-        Globbing is a way to select lots of hosts based on wildcards, rather
+        Globbing is a way to select several hosts based on wildcards, rather
         than the name of the host specifically, or the name of the group they
-        are in.  For instance, it is possible to select ``ww*`` to match all
+        are in.  For example, it is possible to select ``ww*`` to match all
         hosts starting with ``www``.   This concept is pulled directly from
         :program:`Func`, one of Michael DeHaan's (an Ansible Founder) earlier
         projects.  In addition to basic globbing, various set operations are
@@ -175,7 +175,7 @@ when a term comes up on the mailing list.
 
     Group Vars
         The :file:`group_vars/` files are files that live in a directory
-        alongside an inventory file, with an optional filename named after
+        alongside an inventory file, with an optional file name named after
         each group.  This is a convenient place to put variables that are
         provided to a given group, especially complex data structures, so that
         these variables do not have to be embedded in the :term:`inventory`
@@ -225,7 +225,7 @@ when a term comes up on the mailing list.
         more than lists of :term:`plays`) can include other lists of plays,
         and task lists can externalize lists of :term:`tasks` in other files,
         and similarly with :term:`handlers`.  Includes can be parameterized,
-        which means that the loaded file can pass variables.  For instance, an
+        which means that the loaded file can pass variables.  For example, an
         included play for setting up a WordPress blog may take a parameter
         called ``user`` and that play could be included more than once to
         create a blog for both ``alice`` and ``bob``.
@@ -273,14 +273,14 @@ when a term comes up on the mailing list.
     Limit Groups
         By passing ``--limit somegroup`` to :command:`ansible` or
         :command:`ansible-playbook`, the commands can be limited to a subset
-        of :term:`hosts <Host>`.  For instance, this can be used to run
+        of :term:`hosts <Host>`.  For example, this can be used to run
         a :term:`playbook <playbooks>` that normally targets an entire set of
         servers to one particular server.
 
     Local Action
         This keyword is an alias for ``delegate_to: localhost``.
         Used when you want to redirect an action from the remote to
-        execute on the controller itself.
+        execute on the control node itself.
 
     Local Connection
         By using ``connection: local`` in a :term:`playbook <playbooks>`, or
@@ -311,7 +311,7 @@ when a term comes up on the mailing list.
         Modules are the units of work that Ansible ships out to remote
         machines.   Modules are kicked off by either
         :command:`/usr/bin/ansible` or :command:`/usr/bin/ansible-playbook`
-        (where multiple tasks use lots of different modules in conjunction).
+        (where multiple tasks use several different modules in conjunction).
         Modules can be implemented in any language, including Perl, Bash, or
         Ruby -- but can take advantage of some useful communal library code if written
         in Python.  Modules just have to return :term:`JSON`.  Once modules are
@@ -322,7 +322,7 @@ when a term comes up on the mailing list.
     Multi-Tier
         The concept that IT systems are not managed one system at a time, but
         by interactions between multiple systems and groups of systems in
-        well defined orders.  For instance, a web server may need to be
+        well defined orders.  For example, a web server may need to be
         updated before a database server and pieces on the web server may
         need to be updated after *THAT* database server and various load
         balancers and monitoring servers may need to be contacted.  Ansible
@@ -364,7 +364,7 @@ when a term comes up on the mailing list.
     Playbooks
         Playbooks are the language by which Ansible orchestrates, configures,
         administers, or deploys systems.  They are called playbooks partially
-        because it's a sports analogy, and it's supposed to be fun using them.
+        because it is a sports analogy, and it is supposed to be fun using them.
         They aren't workbooks :)
 
     Plays
@@ -394,8 +394,8 @@ when a term comes up on the mailing list.
 
 
     Push Mode
-        Push mode is the default mode of Ansible. In fact, it's not really
-        a mode at all -- it's just how Ansible works when you aren't thinking
+        Push mode is the default mode of Ansible. In fact, it is not really
+        a mode at all -- it is just how Ansible works when you aren't thinking
         about it.  Push mode allows Ansible to be fine-grained and conduct
         nodes through complex orchestration processes without waiting for them
         to check in.
@@ -409,7 +409,7 @@ when a term comes up on the mailing list.
         infinite number of variable names you can use for registration.
 
     Resource Model
-        Ansible modules work in terms of resources.   For instance, the
+        Ansible modules work in terms of resources.   For example, the
         :ref:`file module <file_module>` will select a particular file and ensure
         that the attributes of that resource match a particular model. As an
         example, we might wish to change the owner of :file:`/etc/motd` to
@@ -448,7 +448,7 @@ when a term comes up on the mailing list.
             :term:`Rolling Update`
 
     Sudo
-        Ansible does not require root logins, and since it's daemonless,
+        Ansible does not require root logins, and since it is daemonless,
         definitely does not require root level daemons (which can be
         a security concern in sensitive environments).  Ansible can log in and
         perform many operations wrapped in a sudo command, and can work with
@@ -473,7 +473,7 @@ when a term comes up on the mailing list.
     Tags
         Ansible allows tagging resources in a :term:`playbook <playbooks>`
         with arbitrary keywords, and then running only the parts of the
-        playbook that correspond to those keywords.  For instance, it is
+        playbook that correspond to those keywords.  For example, it is
         possible to have an entire OS configuration, and have certain steps
         labeled ``ntp``, and then run just the ``ntp`` steps to reconfigure
         the time server information on a remote host.
@@ -538,6 +538,6 @@ when a term comes up on the mailing list.
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

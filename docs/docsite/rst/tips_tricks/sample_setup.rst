@@ -88,7 +88,7 @@ This layout gives you more flexibility for larger environments, as well as a tot
 Sample group and host variables
 -------------------------------
 
-These sample group and host files with variables contain the values that apply to each machine or a group of machines. For instance, the data center in Atlanta has its own NTP servers. As a result, when setting up the ``ntp.conf`` file, you could use similar code as in this example:
+These sample group and host files with variables contain the values that apply to each machine or a group of machines. For example, the data center in Atlanta has its own NTP servers. As a result, when setting up the ``ntp.conf`` file, you could use similar code as in this example:
 
   .. code-block:: yaml
 
@@ -290,6 +290,6 @@ If a playbook has a :file:`./library` directory relative to its YAML file, you c
    :ref:`intro_patterns`
        Learn about how to select hosts
    `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
+       Complete playbook files from the GitHub project source
    `Mailing List <https://groups.google.com/group/ansible-project>`_
        Questions? Help? Ideas?  Stop by the list on Google Groups

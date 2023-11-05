@@ -58,7 +58,8 @@ docs directory
 
 Use the ``docs`` folder to describe how to use the roles and plugins the collection provides, role requirements, and so on.
 
-For certified collections, Automation Hub displays documents written in markdown in the main ``docs`` directory with no subdirectories. This will not display on https://docs.ansible.com.
+For certified collections, Automation Hub displays documents written in markdown in the main ``docs`` directory with no subdirectories.
+This documentation is not published to `docs.ansible.com <https://docs.ansible.com>`_.
 
 For community collections included in the Ansible PyPI package, docs.ansible.com displays documents written in reStructuredText (.rst) in a docsite/rst/ subdirectory. Define the structure of your extra documentation in ``docs/docsite/extra-docs.yml``:
 
@@ -203,7 +204,7 @@ Ansible Collections are tested much like Ansible itself, by using the `ansible-t
 
 See :ref:`testing_collections` for specific information on how to test collections with ``ansible-test``.
 
-When reading the :ref:`developing_testing` documentation, there will be content that applies to running Ansible from source code through a git clone, which is typical of an Ansible developer. However, it's not always typical for an Ansible Collection author to be running Ansible from source but instead from a stable release, and to create Collections it is not necessary to run Ansible from source. Therefore, when references of dealing with `ansible-test` binary paths, command completion, or environment variables are presented throughout the :ref:`developing_testing` documentation; keep in mind that it is not needed for Ansible Collection Testing because the act of installing the stable release of Ansible containing `ansible-test` is expected to setup those things for you.
+When reading the :ref:`developing_testing` documentation, there will be content that applies to running Ansible from source code through a git clone, which is typical of an Ansible developer. However, it is not always typical for an Ansible Collection author to be running Ansible from source but instead from a stable release, and to create Collections it is not necessary to run Ansible from source. Therefore, when references of dealing with `ansible-test` binary paths, command completion, or environment variables are presented throughout the :ref:`developing_testing` documentation; keep in mind that it is not needed for Ansible Collection Testing because the act of installing the stable release of Ansible containing `ansible-test` is expected to setup those things for you.
 
 .. _meta_runtime_yml:
 

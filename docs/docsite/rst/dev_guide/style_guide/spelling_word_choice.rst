@@ -57,7 +57,7 @@ Use "using" instead.
 
 Can/May
 ^^^^^^^
-Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it's less tentative.
+Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it is less tentative.
 
 CD or cd
 ^^^^^^^^
@@ -303,7 +303,7 @@ Use the pronoun "who" as a subject. Use the pronoun "whom" as a direct object, a
 
 Will
 ^^^^
-Do not use future tense unless it is absolutely necessary. For instance, do not use the sentence, "The next section will describe the process in more detail." Instead, use the sentence, "The next section describes the process in more detail."
+Do not use future tense unless it is absolutely necessary. For example, do not use the sentence, "The next section will describe the process in more detail." Instead, use the sentence, "The next section describes the process in more detail."
 
 Wish
 ^^^^

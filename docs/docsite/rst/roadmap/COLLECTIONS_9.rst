@@ -22,9 +22,9 @@ Release schedule
 
 :2023-09-18: ansible-core feature freeze, stable-2.16 branch created.
 :2023-09-25: Start of ansible-core 2.16 betas
-:2023-09-26: Ansible-9.0.0 alpha1 (roughly (bi-)weekly ``ansible`` alphas timed to coincide with ``ansible-core-2.16`` pre-releases).
+:2023-09-26: Ansible-9.0.0 alpha1
 :2023-10-16: First ansible-core 2.16 release candidate.
-:2023-10-24/31: Another Ansible-9.0.0 alpha release.
+:2023-10-17: Ansible-9.0.0 alpha2
 :2023-11-06: Ansible-core-2.16.0 released.
 :2023-11-06: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-9. This includes adding new collections to Ansible 9.0.0; from now on new collections have to wait for 9.1.0 or later.
 :2023-11-07: Ansible-9.0.0 beta1 -- feature freeze [1]_ (weekly beta releases; collection owners and interested users should test for bugs).
@@ -48,7 +48,7 @@ Release schedule
 
 .. note::
 
-  In general, it's in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
+  In general, it is in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
   However, in case two releases are planned for the same day, a release of the latest stable version takes precedence. This means that if a stable Ansible 9 release collides with a pre-release of Ansible 10, the latter will be delayed.
   If a Ansible 9 release collides with a stable Ansible 10 release, including 10.0.0, the Ansible 9 release will be delayed.
 

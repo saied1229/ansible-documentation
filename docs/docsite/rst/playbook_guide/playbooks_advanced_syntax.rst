@@ -90,7 +90,7 @@ This is inefficient and, at scale, means more maintenance. To incorporate the ve
                 - "ToDo_App"
                 - *my_version
 
-Now, you can re-use the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
+Now, you can reuse the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
 
 .. code-block:: yaml
 
@@ -117,6 +117,6 @@ You've anchored the value of ``version`` with the ``&my_version`` anchor, and re
    :ref:`complex_data_manipulation`
        Doing complex data manipulation in Ansible
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

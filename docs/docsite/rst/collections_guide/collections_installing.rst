@@ -7,6 +7,12 @@ Installing collections
 
   If you install a collection manually as described in this paragraph, the collection will not be upgraded automatically when you upgrade the ``ansible`` package or ``ansible-core``.
 
+Installing collections in containers
+------------------------------------
+
+You can install collections with their dependencies in containers known as Execution Environments.
+See `Getting started with Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ for details.
+
 Installing collections with ``ansible-galaxy``
 ----------------------------------------------
 
@@ -124,3 +130,15 @@ Configuring the ``ansible-galaxy`` client
 ------------------------------------------
 
 .. include:: ../shared_snippets/galaxy_server_list.txt
+
+
+Removing a collection
+=====================
+
+If you no longer need a collection, simply remove the installation directory from your filesystem. 
+The path can be different depending on your operating system:
+
+.. code-block:: bash
+
+  rm -rf ~/.ansible/collections/ansible_collections/community/general
+  rm -rf ./venv/lib/python3.9/site-packages/ansible_collections/community/general
